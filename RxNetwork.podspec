@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage              = 'https://github.com/Pircate/RxNetwork'
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
   s.author                = { 'Pircate' => 'gao497868860@163.com' }
-  s.source                = { :git => 'https://github.com/Pircate/RxNetwork.git', :tag => s.version.to_s }
+  s.source                = { :git => 'https://github.com/InsectQY/RxNetwork', :tag => s.version.to_s }
   s.ios.deployment_target = '10.0'
   s.requires_arc          = true
   s.swift_version         = '5.0'

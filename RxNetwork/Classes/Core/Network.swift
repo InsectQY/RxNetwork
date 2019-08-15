@@ -1,37 +1,29 @@
-//
-//  Network.swift
-//  RxNetwork
-//
-//  Created by Pircate(swifter.dev@gmail.com) on 2018/4/17.
-//  Copyright © 2018年 Pircate. All rights reserved.
-//
-
 import Moya
 import Result
 
 open class Network {
-    
+
     public static let `default`: Network = {
         Network(configuration: Configuration.default)
     }()
-    
+
     public let provider: MoyaProvider<MultiTarget>
-    
+
     public init(configuration: Configuration) {
         provider = MoyaProvider(configuration: configuration)
     }
 }
 
 public extension MoyaProvider {
-    
+
     convenience init(configuration: Network.Configuration) {
-        
+
         let endpointClosure = { target -> Endpoint in
             MoyaProvider.defaultEndpointMapping(for: target)
                 .adding(newHTTPHeaderFields: configuration.addingHeaders(target))
                 .replacing(task: configuration.replacingTask(target))
         }
-        
+
         let requestClosure =  { (endpoint: Endpoint, closure: RequestResultClosure) -> Void in
             do {
                 var request = try endpoint.urlRequest()
@@ -45,9 +37,10 @@ public extension MoyaProvider {
                 closure(.failure(.underlying(error, nil)))
             }
         }
-        
+
         self.init(endpointClosure: endpointClosure,
                   requestClosure: requestClosure,
+                  manager: configuration.manager,
                   plugins: configuration.plugins)
     }
 }

@@ -1,5 +1,4 @@
 import Moya
-import Result
 
 open class Network {
 
@@ -40,7 +39,6 @@ public extension MoyaProvider {
 
         self.init(endpointClosure: endpointClosure,
                   requestClosure: requestClosure,
-                  manager: configuration.manager,
                   plugins: configuration.plugins)
     }
 }

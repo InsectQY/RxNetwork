@@ -7,6 +7,7 @@
 //
 
 import Moya
+import Alamofire
 
 public extension Network {
     
@@ -21,8 +22,6 @@ public extension Network {
         public var timeoutInterval: TimeInterval = 60
         
         public var plugins: [PluginType] = []
-
-        public var manager: Manager = MoyaProvider<MultiTarget>.defaultAlamofireManager()
         
         public init() {}
     }
